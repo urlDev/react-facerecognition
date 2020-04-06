@@ -27,6 +27,21 @@ const particleOptions = {
   }
 };
 
+const initialState = {
+  input: "",
+  imageUrl: "",
+  box: {},
+  route: "signin",
+  isSignedIn: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: ""
+  }
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -108,7 +123,7 @@ class App extends Component {
         })
           .then(response => response.json())
           .then(count => {
-            // object assign wont change the user object, 
+            // object assign wont change the user object,
             // it will assign new info into it
             this.setState(Object.assign(this.state.user, { entries: count }));
           });
@@ -123,7 +138,7 @@ class App extends Component {
   onRouteChange = route => {
     if (route === "signout") {
       this.setState({
-        isSignedIn: false
+        initialState
       });
     } else if (route === "home") {
       this.setState({
